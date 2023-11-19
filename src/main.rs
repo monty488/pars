@@ -155,14 +155,12 @@ fn main() {
         thread_data.num_threads = num_threads;
     }
     if args[1] == "-r" {
-        println!("-r detected");
         let connection_string: String = args[2].parse().unwrap();
         let connection_string: Vec<&str> = connection_string.split(":").collect();
         let address = connection_string[0].to_string();
         let port_num_jobs: Vec<&str> = connection_string[1].split("/").collect();
         let port = port_num_jobs[0].parse::<u16>().unwrap();
         let num_threads = port_num_jobs[1].parse::<u32>().unwrap();
-        println!("{:?} {:?} {:?}", address, port, num_threads);
         thread_data.num_threads = num_threads;
         thread_data.remote_type = RemoteType::Server;
         thread_data.connection =  Some(Remote {
